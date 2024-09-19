@@ -12,6 +12,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -42,6 +46,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun LoginScreen() {
+    var email by remember { mutableStateOf("") }
+    var senha by remember { mutableStateOf("") }
+
     Scaffold { innerPadding ->
         Column(
             modifier = Modifier
@@ -57,18 +64,23 @@ fun LoginScreen() {
             Spacer(modifier = Modifier.height(16.dp))
 
             // Campo de E-mail
-            CustomTextField(placeholder = "Digite seu E-mail",
-                isEnabled = true, // O campo está habilitado
-                label = "E-mail"
+            CustomTextField(
+                texto = email,
+                onTextoChange = { email = it },
+                isEnabled = false, // O campo está habilitado
+                label = "E-mail",
+                placeholder = "Digite seu E-mail"
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
             // Campo de Senha
             CustomTextField(
-                placeholder = "Digite sua senha",
-                isEnabled = false, // O campo está habilitado
-                label = "Senha"
+                texto = senha,
+                onTextoChange = { senha = it },
+                isEnabled = true,
+                label = "Senha",
+                placeholder = "Digite sua senha"
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -80,15 +92,19 @@ fun LoginScreen() {
             ) {
                 Text(text = "Login")
             }
-            TextButton(onClick = { /*TODO*/ }) {
-                Text(text ="Não possui uma conta ",color = Color.White)
-                Text(text = "clique aqui" )
+
+            TextButton(onClick = { /* TODO */ }) {
+                Text(text = "Não possui uma conta ", color = Color.White)
+                Text(text = "clique aqui")
             }
         }
     }
 }
 @Composable
 fun RegisterScreen() {
+    var email by remember { mutableStateOf("") }
+    var senha by remember { mutableStateOf("") }
+
     Scaffold { innerPadding ->
         Column(
             modifier = Modifier
@@ -104,18 +120,23 @@ fun RegisterScreen() {
             Spacer(modifier = Modifier.height(16.dp))
 
             // Campo de E-mail
-            CustomTextField(placeholder = "Digite seu E-mail",
+            CustomTextField(
+                texto = email,
+                onTextoChange = { email = it },
                 isEnabled = true,
-                label = "E-mail"
+                label = "E-mail",
+                placeholder = "Digite seu E-mail"
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
             // Campo de Senha
             CustomTextField(
-                placeholder = "Digite sua senha",
+                texto = senha,
+                onTextoChange = { senha = it },
                 isEnabled = false,
-                label = "Senha"
+                label = "Senha",
+                placeholder = "Digite sua senha"
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -127,10 +148,10 @@ fun RegisterScreen() {
             ) {
                 Text(text = "Login")
             }
-            TextButton(onClick = { /*TODO*/ }) {
 
-                Text(text ="Já tem uma conta ",color = Color.White)
-                Text(text = "faça login" )
+            TextButton(onClick = { /* TODO */ }) {
+                Text(text = "Não possui uma conta ", color = Color.White)
+                Text(text = "clique aqui")
             }
         }
     }
