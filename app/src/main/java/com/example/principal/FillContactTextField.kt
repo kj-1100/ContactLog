@@ -1,11 +1,12 @@
-
 package com.example.principal
-import androidx.compose.foundation.layout.PaddingValues
+
+
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.material.icons.outlined.VisibilityOff
 import androidx.compose.material3.Icon
@@ -24,33 +25,30 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun CustomTextField(
+fun FillContactTextField(
     padding: Double,
     texto: String,
     onTextoChange: (String) -> Unit,
-    isEnabled: Boolean,
+
     placeholder: String,
     label: String
 ) {
-    var senhaVisivel by remember { mutableStateOf(isEnabled) }
-    val icon = if (!senhaVisivel) Icons.Outlined.Visibility else Icons.Outlined.VisibilityOff
-    val contentDescription = if (senhaVisivel) "Ocultar senha" else "Mostrar senha"
+    var addContact by remember { mutableStateOf(true) }
 
-    TextField(shape = RoundedCornerShape(topStart = 0.dp, topEnd = 0.dp),
+    TextField(
+        shape = RoundedCornerShape(topStart = 0.dp, topEnd = 0.dp),
         value = texto,
         onValueChange = { novoTexto -> onTextoChange(novoTexto) },
         label = { Text(label) },
         placeholder = { Text(placeholder) },
-        visualTransformation = if (!senhaVisivel) VisualTransformation.None else PasswordVisualTransformation(),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         trailingIcon = {
-            if (isEnabled) {
-                IconButton(onClick = { senhaVisivel = !senhaVisivel }) {
-                    Icon(imageVector = icon, contentDescription = contentDescription)
-                }
+            IconButton(onClick = {  }) {
+                Icon(imageVector = Icons.Outlined.Add, contentDescription = "add")
             }
+
         },
-        maxLines=1,
+        maxLines = 1,
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = padding.dp),

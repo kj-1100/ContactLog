@@ -1,16 +1,15 @@
 package com.example.principal
+
 import android.os.Bundle
-import com.example.principal.CustomTextField
+
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -19,10 +18,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalMapOf
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
+import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -32,11 +30,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyApplicationTheme (darkTheme = true){
+            MyApplicationTheme(darkTheme = true) {
                 // Controle de navegação
                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = "login") {
-                    composable("login") { LoginScreen() }
+                    composable("login") { RegisterScreen() }
                 }
             }
         }
@@ -65,6 +63,7 @@ fun LoginScreen() {
 
             // Campo de E-mail
             CustomTextField(
+                padding = 8.0,
                 texto = email,
                 onTextoChange = { email = it },
                 isEnabled = false, // O campo está habilitado
@@ -76,11 +75,13 @@ fun LoginScreen() {
 
             // Campo de Senha
             CustomTextField(
+                padding = 8.0,
                 texto = senha,
                 onTextoChange = { senha = it },
                 isEnabled = true,
                 label = "Senha",
                 placeholder = "Digite sua senha"
+
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -100,10 +101,12 @@ fun LoginScreen() {
         }
     }
 }
+
 @Composable
 fun RegisterScreen() {
     var email by remember { mutableStateOf("") }
     var senha by remember { mutableStateOf("") }
+    var dadosDeContato by remember { mutableStateOf("") }
 
     Scaffold { innerPadding ->
         Column(
@@ -115,15 +118,16 @@ fun RegisterScreen() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Título da Tela
-            Text(text = "Login", style = MaterialTheme.typography.headlineMedium)
+            Text(text = "Registo", style = MaterialTheme.typography.headlineMedium)
 
             Spacer(modifier = Modifier.height(16.dp))
 
             // Campo de E-mail
             CustomTextField(
+                padding = 8.0,
                 texto = email,
                 onTextoChange = { email = it },
-                isEnabled = true,
+                isEnabled = false,
                 label = "E-mail",
                 placeholder = "Digite seu E-mail"
             )
@@ -132,21 +136,31 @@ fun RegisterScreen() {
 
             // Campo de Senha
             CustomTextField(
+                padding = 8.0,
                 texto = senha,
                 onTextoChange = { senha = it },
-                isEnabled = false,
+                isEnabled = true,
                 label = "Senha",
                 placeholder = "Digite sua senha"
             )
-
+            Spacer(modifier = Modifier.height(16.dp))
+            ExpansionTile(title = "fejoada") {
+                FillContactTextField(
+                    padding = 0.0,
+                    texto = dadosDeContato,
+                    onTextoChange = { dadosDeContato = it },
+                    label = "Senha",
+                    placeholder = "Digite sua senha"
+                )
+            }
             Spacer(modifier = Modifier.height(16.dp))
 
             // Botão de login
             Button(
                 onClick = { /* Ação de login */ },
-                modifier = Modifier.width(100.dp)
+                modifier = Modifier.height(50.dp)
             ) {
-                Text(text = "Login")
+                Text(text = "Registrar", fontSize = 18.sp)
             }
 
             TextButton(onClick = { /* TODO */ }) {
@@ -158,12 +172,10 @@ fun RegisterScreen() {
 }
 
 
-
-
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
     MyApplicationTheme(darkTheme = true) {
-        LoginScreen()
+        RegisterScreen()
     }
 }
