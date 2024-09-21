@@ -17,7 +17,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -145,13 +147,26 @@ fun RegisterScreen() {
             )
             Spacer(modifier = Modifier.height(16.dp))
             ExpansionTile(title = "fejoada") {
-                FillContactTextField(
-                    padding = 0.0,
-                    texto = dadosDeContato,
-                    onTextoChange = { dadosDeContato = it },
-                    label = "Senha",
-                    placeholder = "Digite sua senha"
-                )
+
+
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment= Alignment.CenterVertically,
+                ) {Spacer(modifier = Modifier.width(15.dp))
+                    Text("Selecione o tipo de contato:")
+                    Spacer(modifier = Modifier.width(62.dp))
+                    IconButtonWithDropdown()
+                }
+
+
+
+//                FillContactTextField(
+//                    padding = 0.0,
+//                    texto = dadosDeContato,
+//                    onTextoChange = { dadosDeContato = it },
+//                    label = "Senha",
+//                    placeholder = "Digite sua senha"
+//                )
             }
             Spacer(modifier = Modifier.height(16.dp))
 
