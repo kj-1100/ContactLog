@@ -16,6 +16,7 @@ import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.material.icons.outlined.Mail
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -67,12 +68,12 @@ fun ListTile(
                 trailingIcon()
             }
         }
-    } else if (model == "Número de telefone") {
+    }
+    else if (model == "Número de telefone") {
 
         Row(
             modifier = modifier
                 .fillMaxWidth()
-                .clickable(enabled = onClick != null) { onClick?.invoke() }
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
@@ -100,19 +101,21 @@ fun ListTile(
 
             }
 
-            Icon(
-                imageVector = Icons.Outlined.Edit,
-                contentDescription = "",
-            )
+           IconButton(onClick = { onClick?.invoke() }) {
+               Icon(
+                   imageVector = Icons.Outlined.Edit,
+                   contentDescription = "",
+               )
+           }
 
         }
 
-    } else if (model == "Endereço") {
+    }
+    else if (model == "Endereço") {
 
         Row(
             modifier = modifier
                 .fillMaxWidth()
-                .clickable(enabled = onClick != null) { onClick?.invoke() }
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
@@ -161,19 +164,21 @@ fun ListTile(
 
             }
 
-            Icon(
-                imageVector = Icons.Outlined.Edit,
-                contentDescription = "",
-            )
+            IconButton(onClick = { onClick?.invoke() }) {
+                Icon(
+                    imageVector = Icons.Outlined.Edit,
+                    contentDescription = "",
+                )
+            }
         }
 
 
-    } else if (model == "Rede social") {
+    }
+    else if (model == "Rede social") {
 
         Row(
             modifier = modifier
                 .fillMaxWidth()
-                .clickable(enabled = onClick != null) { onClick?.invoke() }
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
@@ -199,19 +204,21 @@ fun ListTile(
 
             }
 
-            Icon(
-                imageVector = Icons.Outlined.Edit,
-                contentDescription = "",
-            )
+            IconButton(onClick = { onClick?.invoke() }) {
+                Icon(
+                    imageVector = Icons.Outlined.Edit,
+                    contentDescription = "",
+                )
+            }
         }
 
 
-    } else if (model == "E-mail") {
+    }
+    else if (model == "E-mail") {
 
         Row(
             modifier = modifier
                 .fillMaxWidth()
-                .clickable(enabled = onClick != null) { onClick?.invoke() }
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
@@ -237,12 +244,15 @@ fun ListTile(
 
             }
 
-            Icon(
-                imageVector = Icons.Outlined.Edit,
-                contentDescription = "",
-            )
+            IconButton(onClick = { onClick?.invoke() }) {
+                Icon(
+                    imageVector = Icons.Outlined.Edit,
+                    contentDescription = "",
+                )
+            }
         }
-    } else {
+    }
+    else {
 
 
         Row(
