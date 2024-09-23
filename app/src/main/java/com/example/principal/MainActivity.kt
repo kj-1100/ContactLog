@@ -1,11 +1,16 @@
 package com.example.principal
 
 import android.os.Bundle
-
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.gestures.ScrollableState
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -20,10 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.NavHost
@@ -153,22 +155,36 @@ fun RegisterScreen() {
             ExpansionTile(title = "fejoada") {
 
 
-                Row(
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Spacer(modifier = Modifier.width(15.dp))
-                    Text("Selecione o tipo de contato:")
-                    Spacer(modifier = Modifier.width(62.dp))
-                    IconButtonWithDropdown() { selectedItem ->
-                        dadosDeContato = selectedItem
-                        println("Item selecionado: $selectedItem")
-                        println("Item selecionado: $dadosDeContato 2121212121")
+                ListTile(
+                    title = {
+                        Text(text = "Selecione o tipo de contato:")
+                    },
+                    trailingIcon = {
+                        IconButtonWithDropdown { selectedItem ->
+                            dadosDeContato = selectedItem
+                            println("Item selecionado: $selectedItem")
+                            println("Item selecionado: $dadosDeContato 2121212121")
+                        }
+
                     }
 
+                )
 
-                }
-
+//                Row(
+//                    horizontalArrangement = Arrangement.Center,
+//                    verticalAlignment = Alignment.CenterVertically,
+//                ) {
+//                    Spacer(modifier = Modifier.width(15.dp))
+//                    Text("Selecione o tipo de contato:")
+//                    Spacer(modifier = Modifier.width(62.dp))
+//                    IconButtonWithDropdown { selectedItem ->
+//                        dadosDeContato = selectedItem
+//                        println("Item selecionado: $selectedItem")
+//                        println("Item selecionado: $dadosDeContato 2121212121")
+//                    }
+//
+//
+//                }
 
 
                 ListTile(
@@ -219,10 +235,10 @@ fun RegisterScreen() {
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun HomeScreenPreview() {
-    MyApplicationTheme(darkTheme = true) {
-        RegisterScreen()
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun HomeScreenPreview() {
+//    MyApplicationTheme(darkTheme = true) {
+//        RegisterScreen()
+//    }
+//}
