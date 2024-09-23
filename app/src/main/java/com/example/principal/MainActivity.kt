@@ -4,7 +4,10 @@ import android.os.Bundle
 
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.gestures.ScrollableState
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -114,6 +117,7 @@ fun RegisterScreen() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(rememberScrollState())
                 .padding(innerPadding)
                 .padding(16.dp),
             verticalArrangement = Arrangement.Center,
@@ -166,6 +170,28 @@ fun RegisterScreen() {
                 }
 
 
+
+                ListTile(
+                    model = "Número de telefone",
+                    title = { Text(text = "123-456-7890") },
+                    onClick = { /* Ação ao clicar no item */ }
+                )
+                ListTile(
+                    model = "Endereço",
+                    title = { Text(text = "Rua Exemplo, 123") },
+                    onClick = { /* Ação ao clicar no item */ }
+                )
+                ListTile(
+                    model = "E-mail",
+                    title = { Text(text = "exemplo@email.com") },
+                    onClick = { /* Ação ao clicar no item */ }
+                )
+                ListTile(
+                    model = "Rede social",
+                    title = { Text(text = "@meuperfil") },
+                    onClick = { /* Ação ao clicar no item */ }
+                )
+            }
 //                FillContactTextField(
 //                    padding = 0.0,
 //                    texto = dadosDeContato,
@@ -173,7 +199,7 @@ fun RegisterScreen() {
 //                    label = "Senha",
 //                    placeholder = "Digite sua senha"
 //                )
-            }
+
             Spacer(modifier = Modifier.height(16.dp))
 
             // Botão de login
