@@ -21,10 +21,10 @@ fun FillContactTextField(
     padding: Double,
     texto: String,
     onTextoChange: (String) -> Unit,
-
     placeholder: String,
     label: String
 ) {
+
 
     TextField(
         shape = RoundedCornerShape(topStart = 0.dp, topEnd = 0.dp),
@@ -34,7 +34,7 @@ fun FillContactTextField(
         placeholder = { Text(placeholder) },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         trailingIcon = {
-            IconButtonWithDropdown()
+
 
         },
         maxLines = 1,

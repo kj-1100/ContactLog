@@ -11,7 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun IconButtonWithDropdown() {
+fun IconButtonWithDropdown(onItemSelected: (String) -> Unit) {
     var expanded by remember { mutableStateOf(false) }
 
     Box(
@@ -34,29 +34,29 @@ fun IconButtonWithDropdown() {
             DropdownMenuItem(
                 text = { Text("Número de telefone") },
                 onClick = {
+                    onItemSelected("Número de telefone")
                     expanded = false
-
                 }
             )
             DropdownMenuItem(
                 text = { Text("Endereço") },
                 onClick = {
+                    onItemSelected("Endereço")
                     expanded = false
-
                 }
             )
             DropdownMenuItem(
                 text = { Text("Rede social") },
                 onClick = {
+                    onItemSelected("Rede social")
                     expanded = false
-
                 }
             )
             DropdownMenuItem(
                 text = { Text("E-mail") },
                 onClick = {
+                    onItemSelected("E-mail")
                     expanded = false
-
                 }
             )
         }
@@ -66,5 +66,7 @@ fun IconButtonWithDropdown() {
 @Preview(showBackground = true)
 @Composable
 fun PreviewIconButtonWithDropdown() {
-    IconButtonWithDropdown()
+    IconButtonWithDropdown(){selectedItem ->
+        // Ação com o item selecionado
+        println("Item selecionado: $selectedItem")}
 }

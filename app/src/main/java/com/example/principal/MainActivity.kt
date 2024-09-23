@@ -151,13 +151,19 @@ fun RegisterScreen() {
 
                 Row(
                     horizontalArrangement = Arrangement.Center,
-                    verticalAlignment= Alignment.CenterVertically,
-                ) {Spacer(modifier = Modifier.width(15.dp))
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Spacer(modifier = Modifier.width(15.dp))
                     Text("Selecione o tipo de contato:")
                     Spacer(modifier = Modifier.width(62.dp))
-                    IconButtonWithDropdown()
-                }
+                    IconButtonWithDropdown() { selectedItem ->
+                        dadosDeContato = selectedItem
+                        println("Item selecionado: $selectedItem")
+                        println("Item selecionado: $dadosDeContato 2121212121")
+                    }
 
+
+                }
 
 
 //                FillContactTextField(
