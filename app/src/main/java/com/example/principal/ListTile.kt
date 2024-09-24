@@ -137,15 +137,15 @@ fun ListTile(
                     Spacer(modifier = Modifier.height(4.dp))
                     title()
                 }
-                Text(text = "Bairro/Distrito", color = Color.LightGray, fontSize = 12.sp)
+                /**Text(text = "Bairro/Distrito", color = Color.LightGray, fontSize = 12.sp)
                 if (title != null) {
                     Spacer(modifier = Modifier.height(4.dp))
                     title()
-                }
+                }**/
 
 
             }
-            Column(
+            /**Column(
                 modifier = Modifier
                     .weight(1f)
                     .padding(end = 16.dp)
@@ -162,7 +162,7 @@ fun ListTile(
                 }
 
 
-            }
+            }**/
 
             IconButton(onClick = { onClick?.invoke() }) {
                 Icon(

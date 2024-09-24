@@ -18,6 +18,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -114,6 +115,8 @@ fun RegisterScreen() {
     var email by remember { mutableStateOf("") }
     var senha by remember { mutableStateOf("") }
     var dadosDeContato by remember { mutableStateOf("") }
+    var isEditingAddress by remember { mutableStateOf(false) } // Estado para alternar entre exibir e editar endereço
+    var endereco by remember { mutableStateOf("") }
 
     Scaffold { innerPadding ->
         Column(
@@ -170,21 +173,20 @@ fun RegisterScreen() {
 
                 )
 
-//                Row(
-//                    horizontalArrangement = Arrangement.Center,
-//                    verticalAlignment = Alignment.CenterVertically,
-//                ) {
-//                    Spacer(modifier = Modifier.width(15.dp))
-//                    Text("Selecione o tipo de contato:")
-//                    Spacer(modifier = Modifier.width(62.dp))
-//                    IconButtonWithDropdown { selectedItem ->
-//                        dadosDeContato = selectedItem
-//                        println("Item selecionado: $selectedItem")
-//                        println("Item selecionado: $dadosDeContato 2121212121")
-//                    }
-//
-//
-//                }
+                /**Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Spacer(modifier = Modifier.width(15.dp))
+                    Text("Selecione o tipo de contato:")
+                    Spacer(modifier = Modifier.width(62.dp))
+                    IconButtonWithDropdown { selectedItem ->
+                        dadosDeContato = selectedItem
+                        println("Item selecionado: $selectedItem")
+                        println("Item selecionado: $dadosDeContato 2121212121")
+                    }
+
+                }**/
 
 
                 ListTile(
@@ -192,11 +194,33 @@ fun RegisterScreen() {
                     title = { Text(text = "123-456-7890") },
                     onClick = { /* Ação ao clicar no item */ }
                 )
-                ListTile(
-                    model = "Endereço",
-                    title = { Text(text = "Rua Exemplo, 123") },
-                    onClick = { /* Ação ao clicar no item */ }
-                )
+                /** ListTile(
+                model = "Endereço",
+                title = { Text(text = "Rua Exemplo, 123") },
+                onClick = { /* Ação ao clicar no item */ }
+                ) **/
+                ExpansionTile(title = "Contatos") {
+                    // Aqui tá alterado o comportamento do ListTile de "Endereço"
+                    ListTile(
+                        model = "Endereço",
+                        title = {
+                            if (isEditingAddress) {
+                                // Exibir TextField se estiver editando o endereço
+                                TextField(
+                                    value = endereco,
+                                    onValueChange = { endereco = it },
+                                    label = { Text("Digite seu endereço") }
+                                )
+                            } else {
+                                // Exibir o texto fixo se não estiver editando
+                                Text(text = endereco)
+                            }
+                        },
+                        onClick = {
+                            isEditingAddress = !isEditingAddress // Alternar entre exibir o texto e a TextField
+                        }
+                    )
+                }
                 ListTile(
                     model = "E-mail",
                     title = { Text(text = "exemplo@email.com") },
